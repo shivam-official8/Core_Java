@@ -22,3 +22,4 @@ class ElectricCar extends Car{
         electricCar.charge();
     }
 }
+

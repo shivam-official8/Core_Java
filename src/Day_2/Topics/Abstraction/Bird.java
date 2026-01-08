@@ -10,6 +10,19 @@ package Day_2.Topics.Abstraction;
 
  interface Flyable{
     public void  fly();
+    private void doing(){
+        System.out.println("Doing something");
+    }
+    default void eating(){
+        System.out.println("eating");
+    }
+     static void main(){
+        System.out.println("main");
+    }
+    private static void main1(){
+         System.out.println("main1");
+     }
+
 }
 public class Bird implements Flyable {
     @Override
@@ -29,5 +42,7 @@ class Plane implements Flyable{
         bird.fly();
         Plane plane = new Plane();
         plane.fly();
+        bird.eating();
+        Flyable.main();
     }
 }
