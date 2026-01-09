@@ -12,5 +12,8 @@ public class Linkedlist {
         System.out.println(l.getFirst());
         System.out.println(l.getLast());
         System.out.println(l.get(2));
+        System.out.println(l);
+        l.sort((a,b)->b-a);
+        System.out.println(l);
     }
 }

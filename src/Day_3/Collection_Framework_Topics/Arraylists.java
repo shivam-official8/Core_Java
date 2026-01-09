@@ -1,6 +1,7 @@
 package Day_3.Collection_Framework_Topics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Arraylists {
@@ -28,6 +29,11 @@ public class Arraylists {
         System.out.println(arr.lastIndexOf(28));
         arr.remove(Integer.valueOf(67));
         System.out.println(arr);
+        Collections.sort(arr, (a, b)->b-a);
+        System.out.println(arr);
+        arr.sort((a, b) -> a - b);
+        System.out.println(arr);
+
 
     }
 }

@@ -105,5 +105,21 @@ class Book{
     public String getAuthor() {
         return author;
     }
+    public void setIssued(boolean issued){
+
+    }
+    public void displayBook(){
+        System.out.println("Title: "+this.title+" Author: "+this.author);
+    }
+}
+
+class Library{
+    private String libraryName;
+    private ArrayList<Book> books;
+    private ArrayList<User> users;
+
+    public Library(String libraryName){
+        this.libraryName = libraryName;
+    }
 }
 
