@@ -1,0 +1,18 @@
+package Core_Advance_Java.Day_8;
+
+class InsufficientBalanceException extends Exception {
+    public InsufficientBalanceException(String msg) {
+        super(msg);
+    }
+}
+
+class AccountNotFoundException extends Exception {
+    public AccountNotFoundException(String msg) {
+        super(msg);
+    }
+}
+class InvalidAmountException extends Exception{
+    public InvalidAmountException(String msg) { super(msg); }
+}
+
+
