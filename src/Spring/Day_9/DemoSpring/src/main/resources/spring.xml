@@ -1,0 +1,38 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    <bean id = "dev" class = "com.shivam.Dev" autowire="byName">-->
+    <bean id = "dev" class = "com.shivam.Dev" autowire="byType">
+<!--        setter injection-->
+<!--        <property name="age" value="12" />-->
+<!--        <constructor-arg value="14" />-->
+<!--        if we have multiple params in constructor-->
+<!--        <constructor-arg index="0" value="19" />-->
+<!--        <constructor-arg index="1" value="89000" />-->
+        
+<!--        <property name="laptop" ref="laptop1" />-->
+<!--        <constructor-arg ref="laptop1" />-->
+<!--        // DMD-->
+<!--        <property name="computer" ref="laptop1" />-->
+<!--        <property name="computer" ref="desk1" />-->
+<!--        we can replace this by auto wire-->
+<!--        <property name="computer" ref="computer"/>-->
+
+    </bean>
+
+
+
+<!--    it will create 2 objects of dev-->
+<!--    <bean id = "dev1" class = "com.shivam.Dev">-->
+
+<!--    </bean>-->
+
+<!--    type of laptop and desktop are same so autowire byType gives error unless we do: -->
+    <bean id = "laptop1" class = "com.shivam.Laptop" primary="true"> </bean>
+<!--    <bean id = "computer" class = "com.shivam.Laptop"> </bean>-->
+    <bean id = "desk1" class = "com.shivam.Desktop"> </bean>
+
+</beans>
