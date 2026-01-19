@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4b57f1d-4474-40d8-8a5b-a5a49ce0ca53" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/java/com/shivam/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/java/com/shivam/Computer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/java/com/shivam/Desktop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/java/com/shivam/Dev.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/java/com/shivam/Laptop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/main/resources/spring.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Day_9/DemoSpring/src/test/java/com/shivam/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +81,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768797563903</updated>
       <workItem from="1768797565110" duration="225000" />
-      <workItem from="1768800836745" duration="1681000" />
+      <workItem from="1768800836745" duration="5074000" />
     </task>
     <servers />
   </component>
