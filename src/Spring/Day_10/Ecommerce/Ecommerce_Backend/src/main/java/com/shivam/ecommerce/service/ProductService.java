@@ -43,7 +43,7 @@ public class ProductService {
 
     // by default auto commit is on so postgres cant save lob (large objects) to avoid this we do transactional cause
     // query annotation which is used in repo in custom method and custom queries do not automatically starts transaction
-    // unles the calling method is transactional
+    // unless the calling method is transactional
     // all other methods of jpa is transaction by default
 
     @Transactional
