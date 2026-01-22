@@ -1,6 +1,7 @@
 package com.shivam.bookstorejpamapping.entity;
 
 //import com.shivam.bookstorejpamapping.entity.notusedonlyforinfo.Book1;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Library {
     private String name;
 
     @OneToMany(mappedBy = "library", fetch = FetchType.EAGER)
-    @JsonManagedReference
+//    @JsonManagedReference
+    @JsonIgnoreProperties("library")
     private List<Book> books = new ArrayList<>();
 }
