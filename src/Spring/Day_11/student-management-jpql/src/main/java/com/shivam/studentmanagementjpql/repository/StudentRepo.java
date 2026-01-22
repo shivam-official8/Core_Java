@@ -23,6 +23,7 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
     Student findStudentByAge(int age);
     Student findStudentByRollNo(int roll);
     Student findStudentByBirthDate(LocalDate birthDate);
+//    List<Student> findStudentsBy
 //    age before after and between always returns a list
 //    List<Student> findStudentByAgeBefore(int age);
     // pagination
@@ -54,6 +55,7 @@ public interface StudentRepo extends JpaRepository<Student, Integer> {
 
     // to use update query we have to use modifying annotation to let db know we are updating so do transaction
     // management according to that
+
     @Modifying
     @Query("UPDATE Student p SET p.name = :name where p.id = :id")
     int updateNameWithId(@Param("name") String name, @Param("id") int id);

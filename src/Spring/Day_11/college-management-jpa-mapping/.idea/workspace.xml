@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8a5e7391-21fd-47f7-83db-0b016ba73dc2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../bookstore-jpa-mapping/src/main/java/com/shivam/bookstorejpamapping/notusedonlyforinfo/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bookstore-jpa-mapping/src/main/java/com/shivam/bookstorejpamapping/notusedonlyforinfo/Book1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bookstore-jpa-mapping/src/main/java/com/shivam/bookstorejpamapping/notusedonlyforinfo/BookCategory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bookstore-jpa-mapping/src/main/java/com/shivam/bookstorejpamapping/notusedonlyforinfo/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bookstore-jpa-mapping/src/main/java/com/shivam/bookstorejpamapping/notusedonlyforinfo/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../student-management-jpql/src/main/java/com/shivam/studentmanagementjpql/repository/StudentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../student-management-jpql/src/main/java/com/shivam/studentmanagementjpql/repository/StudentRepo.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "shivam-official8"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/shivam-official8/Day_1_Core_Java_Basics.git",
+    "accountId": "acf92206-96e8-4ec4-9f67-1df13fd20690"
+  }
+}]]></component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="38bTPB4S6WAW8xBOwjNhwi76oOQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "spring",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CollegeManagementJpaMappingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="college-management-jpa-mapping" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shivam.collegemanagementjpamapping.CollegeManagementJpaMappingApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a5e7391-21fd-47f7-83db-0b016ba73dc2" name="Changes" comment="" />
+      <created>1769067249407</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769067249407</updated>
+      <workItem from="1769067250693" duration="77000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
