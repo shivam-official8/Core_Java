@@ -20,8 +20,8 @@ public class LibraryController {
         libraryService.addLibrary(library);
     }
 
-    @GetMapping("/getLibraries")
+    @GetMapping("/getlibraries")
     public List<Library> getLibraries(){
-        return libraryService.getLibraries();
+        return libraryService.getAllLibraries();
     }
 }

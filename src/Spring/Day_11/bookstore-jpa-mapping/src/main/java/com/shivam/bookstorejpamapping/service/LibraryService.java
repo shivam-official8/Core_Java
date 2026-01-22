@@ -8,18 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
 @Service
 public class LibraryService {
-    @Autowired
-    BookRepo repo;
-    @Autowired
-    LibraryRepo libraryRepo;
-    public void addLibrary(Library library) {
-        libraryRepo.save(library);
 
+    @Autowired
+    private  LibraryRepo libraryRepository;
+
+    public void addLibrary(Library library) {
+         libraryRepository.save(library);
     }
 
-    public List<Library> getLibraries() {
-        return libraryRepo.findAll();
+
+    public List<Library> getAllLibraries() {
+        return libraryRepository.findAll();
     }
 }

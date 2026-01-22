@@ -20,6 +20,8 @@ public class BookService {
                 .orElseThrow(() -> new RuntimeException("Library not found"));
         lib.getBooks().add(book);
         book.setLibrary(lib);
+//        System.out.println("Library: "+lib);
+//        System.out.println("Book: "+book);
         repo.save(book);
 
     }
