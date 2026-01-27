@@ -1,0 +1,19 @@
+<html>
+<head><title>Login</title></head>
+<body>
+
+<h2>Login</h2>
+
+<p style="color:red">${error}</p>
+
+<form action="login" method="post">
+    Email: <input type="email" name="email" /><br><br>
+    Password: <input type="password" name="password" /><br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+<a href="signup">Signup</a>
+
+</body>
+</html>
