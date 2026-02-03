@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.example.ecommerce.controller","l":"AdminController"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.example.ecommerce.controller","l":"HomeController"},{"p":"com.example.ecommerce.controller","l":"UserController"}];updateSearchResults();
