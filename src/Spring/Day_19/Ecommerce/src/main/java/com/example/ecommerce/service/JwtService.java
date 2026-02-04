@@ -2,6 +2,7 @@ package com.example.ecommerce.service;
 
 
 //import com.example.spring_security.model.Users;
+import com.example.ecommerce.entity.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -35,15 +36,14 @@ public class JwtService {
 //        }
 //    }
 
-    public String generateToken(String username) {
-        Map<String, Object> claims = new HashMap<>();
+    public String generateToken(String username, String role) {
+//        Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
-                .claims().add(claims)
                 .subject(username)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 *60 *2))
-                .and()
-                .signWith(getKey())
+                .claim("role", role)
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 7))
+                .signWith(getKey())   // 👈 NO algorithm param
                 .compact();
     }
 
@@ -57,17 +57,26 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
+
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
         final Claims claims = extractAllClaims(token);
         return claimResolver.apply(claims);
     }
 
-    private Claims extractAllClaims(String token) {
+//    private Claims extractAllClaims(String token) {
+//        return Jwts.parser()
+//                .verifyWith(getKey())
+//                .build()
+//                .parseSignedClaims(token)
+//                .getPayload();
+//    }
+
+    public Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(getKey())
+                .verifyWith(getKey())      // 👈 NEW in 0.12.x
                 .build()
-                .parseSignedClaims(token)
-                .getPayload();
+                .parseSignedClaims(token)  // 👈 NEW in 0.12.x
+                .getPayload();             // 👈 returns Claims
     }
 
     public boolean validateToken(String token, UserDetails userDetails) {
@@ -82,5 +91,10 @@ public class JwtService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role", String.class);
+    }
+
 
 }

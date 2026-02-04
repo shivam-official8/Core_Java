@@ -20,9 +20,9 @@ public class AdminService {
     private ProductRepo productRepo;
 
 
-    public List<Product> allProducts(){
-        return productRepo.findAll();
-    }
+//    public List<Product> allProducts(){
+//        return productRepo.findAll();
+//    }
 
     public ResponseEntity<String> addProduct(Product product){
         productRepo.save(product);

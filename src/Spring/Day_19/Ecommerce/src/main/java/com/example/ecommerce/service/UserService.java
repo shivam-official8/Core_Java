@@ -1,5 +1,6 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.dto.UpdateUserRequest;
 import com.example.ecommerce.entity.Product;
 import com.example.ecommerce.entity.Users;
 import com.example.ecommerce.repository.ProductRepo;
@@ -10,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,41 +27,30 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     public List<Product> allProducts(){
         return productRepo.findAll();
     }
 
-    public ResponseEntity<String> updateUserDetails(Users users){
-        userRepo.save(users);
-        return new ResponseEntity<>("Details updated.", HttpStatus.OK);
+    public void updateUserDetails(String username, UpdateUserRequest request) {
+        Users user = userRepo.findByUsername(username);
+        if(user==null){new RuntimeException("User not found"); return;}
+
+        user.setName(request.getName());
+
+        if (request.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(request.getPassword()));
+        }
+
+        userRepo.save(user);
     }
 
 
 
 
 
-    @Autowired
-    private AuthenticationManager manager;
-
-    @Autowired
-    private JwtService jwtService;
-
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
-
-    public ResponseEntity<String> register(Users users){
-        if(userRepo.findByUsername(users.getUsername())!=null)return new ResponseEntity<>("User Already Exists!", HttpStatus.ALREADY_REPORTED);
-        users.setPassword(encoder.encode(users.getPassword()));
-        userRepo.save(users);
-        return new ResponseEntity<>("User Register", HttpStatus.CREATED);
-    }
-
-    public String verify(Users users) {
-        Authentication auth = manager.authenticate(new UsernamePasswordAuthenticationToken(users.getUsername()
-                ,users.getPassword()));
-
-        if(auth.isAuthenticated())    return jwtService.generateToken(users.getUsername());
-        return "fail";
-
-    }
 
 }
