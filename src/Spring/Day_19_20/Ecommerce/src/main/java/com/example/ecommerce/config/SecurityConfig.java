@@ -41,13 +41,33 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
 
-        return http.csrf(customizer -> customizer.disable())
-                .authorizeHttpRequests(req -> req
-                        .requestMatchers("/register", "/login").permitAll().anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+//        return http.csrf(customizer -> customizer.disable())
+//                .authorizeHttpRequests(req -> req
+//                        .requestMatchers("/register", "/login").permitAll().anyRequest().authenticated())
+//                .httpBasic(Customizer.withDefaults())
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+//                .build();
+
+        http.csrf(csrf -> csrf.disable());
+
+        http.authorizeHttpRequests(auth -> auth
+
+                .requestMatchers("/", "/login", "/logout").permitAll()
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/user/**").permitAll()
+                .requestMatchers("/admin/**").permitAll()
+                .requestMatchers("/customer/**").permitAll()
+//                .requestMatchers("/tasks/**").permitAll()
+//                .requestMatchers("/users/**").permitAll()
+//                .requestMatchers("/salary").permitAll()
+//                .requestMatchers("/salary/**").permitAll()
+                .anyRequest().permitAll()
+        );
+
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
     @Bean
     public AuthenticationProvider authenticationProvider(){

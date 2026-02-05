@@ -78,45 +78,78 @@ public class JwtFilter extends OncePerRequestFilter {
 //    }
 
 
+//    @Override
+//    protected void doFilterInternal(
+//            HttpServletRequest request,
+//            HttpServletResponse response,
+//            FilterChain filterChain
+//    ) throws ServletException, IOException {
+//
+//        String authHeader = request.getHeader("Authorization");
+//
+//        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+//
+//        String token = authHeader.substring(7);
+//        String username = service.extractUserName(token);
+//        String role = service.extractRole(token); // 👈 IMPORTANT
+//        System.out.println("JWT FILTER HIT");
+//        System.out.println("Username from token = " + username);
+//        System.out.println("Role from token = " + role);
+//
+//
+//        if (username != null &&
+//                SecurityContextHolder.getContext().getAuthentication() == null) {
+//
+//            SimpleGrantedAuthority authority =
+//                    new SimpleGrantedAuthority("ROLE_" + role);
+//
+//            UsernamePasswordAuthenticationToken authentication =
+//                    new UsernamePasswordAuthenticationToken(
+//                            username,
+//                            null,
+//                            List.of(authority)
+//                    );
+//
+//            SecurityContextHolder.getContext().setAuthentication(authentication);
+//        }
+//
+//        filterChain.doFilter(request, response);
+//    }
+
+
+
+    private final JwtService jwtUtil;
+    private final MyUserDetailsService userDetailsService;
+
+    public JwtFilter(JwtService jwtUtil, MyUserDetailsService userDetailsService) {
+        this.jwtUtil = jwtUtil;
+        this.userDetailsService = userDetailsService;
+    }
+
     @Override
-    protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+                                    FilterChain chain) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
+        String header = request.getHeader("Authorization");
 
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
+        if (header != null && header.startsWith("Bearer ")) {
+            String token = header.substring(7);
+
+            if (jwtUtil.validateToken(token)) {
+                String username = jwtUtil.extractUsername(token);
+                var userDetails = userDetailsService.loadUserByUsername(username);
+
+                var auth = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+
+                auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
         }
-
-        String token = authHeader.substring(7);
-        String username = service.extractUserName(token);
-        String role = service.extractRole(token); // 👈 IMPORTANT
-        System.out.println("JWT FILTER HIT");
-        System.out.println("Username from token = " + username);
-        System.out.println("Role from token = " + role);
-
-
-        if (username != null &&
-                SecurityContextHolder.getContext().getAuthentication() == null) {
-
-            SimpleGrantedAuthority authority =
-                    new SimpleGrantedAuthority("ROLE_" + role);
-
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(
-                            username,
-                            null,
-                            List.of(authority)
-                    );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
-
-        filterChain.doFilter(request, response);
+        chain.doFilter(request, response);
     }
 
 

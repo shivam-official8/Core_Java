@@ -24,5 +24,4 @@ public class Users {
     private String password;
     private String name;
     private Role role;
-
 }

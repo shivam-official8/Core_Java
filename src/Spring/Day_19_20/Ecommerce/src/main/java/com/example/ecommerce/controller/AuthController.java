@@ -16,14 +16,14 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody Users users){
-        return authService.register(users);
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestBody Users users){
-        System.out.println(users);
-        return authService.verify(users);
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> register(@RequestBody Users users){
+//        return authService.register(users);
+//    }
+//
+//    @PostMapping("/login")
+//    public String login(@RequestBody Users users){
+//        System.out.println(users);
+//        return authService.verify(users);
+//    }
 }
