@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+
 <html>
 <head>
     <title>Add Product</title>
@@ -32,6 +33,7 @@
 </head>
 
 <body>
+<jsp:include page="common/header.jsp" />
 <div class="card">
     <h2>Add Product</h2>
 
@@ -43,7 +45,7 @@
 
         <button type="submit">Add Product</button>
     </form>
-    <form action="${pageContext.request.contextPath}/" method="get">
+    <form action="${pageContext.request.contextPath}/home" method="get">
     <button type="submit">Home</button>
     </form>
 </div>

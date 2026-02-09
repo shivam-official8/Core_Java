@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+<jsp:include page="common/header.jsp" />
 <h2 align="center">Update Product</h2>
 
 <form action="/admin/updateProduct" method="post">

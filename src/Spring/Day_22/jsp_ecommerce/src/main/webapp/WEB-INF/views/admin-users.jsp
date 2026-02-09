@@ -56,7 +56,7 @@
     </style>
 </head>
 <body>
-
+<jsp:include page="common/header.jsp" />
 <h2>All Users</h2>
 
 <table>

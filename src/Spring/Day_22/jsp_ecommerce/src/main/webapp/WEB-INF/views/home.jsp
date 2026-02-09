@@ -1,99 +1,31 @@
-<%--<%@ page contentType="text/html;charset=UTF-8" %>--%>
-<%--<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>--%>
-
-<%--<!DOCTYPE html>--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Home</title>--%>
-
-<%--    <style>--%>
-<%--        body {--%>
-<%--            font-family: Arial, sans-serif;--%>
-<%--            background-color: #f4f6f8;--%>
-<%--            margin: 0;--%>
-<%--            padding: 20px;--%>
-<%--        }--%>
-
-<%--        h2 {--%>
-<%--            text-align: center;--%>
-<%--        }--%>
-
-<%--        .top-bar {--%>
-<%--            display: flex;--%>
-<%--            justify-content: space-between;--%>
-<%--            margin-bottom: 20px;--%>
-<%--        }--%>
-
-<%--        .products {--%>
-<%--            display: grid;--%>
-<%--            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));--%>
-<%--            gap: 20px;--%>
-<%--        }--%>
-
-<%--        .product-card {--%>
-<%--            background: #fff;--%>
-<%--            padding: 15px;--%>
-<%--            border-radius: 8px;--%>
-<%--            box-shadow: 0 2px 6px rgba(0,0,0,0.1);--%>
-<%--        }--%>
-
-<%--        .product-card h4 {--%>
-<%--            margin: 0 0 10px;--%>
-<%--        }--%>
-
-<%--        .price {--%>
-<%--            font-weight: bold;--%>
-<%--            color: #2e7d32;--%>
-<%--        }--%>
-
-<%--        a.logout {--%>
-<%--            text-decoration: none;--%>
-<%--            color: white;--%>
-<%--            background: #d32f2f;--%>
-<%--            padding: 8px 14px;--%>
-<%--            border-radius: 4px;--%>
-<%--        }--%>
-<%--    </style>--%>
-<%--</head>--%>
-
-<%--<body>--%>
-
-<%--<div class="top-bar">--%>
-<%--    <h3>Welcome to E-Commerce</h3>--%>
-<%--    <a href="/logout" class="logout">Logout</a>--%>
-<%--</div>--%>
-
-<%--<h2>All Products</h2>--%>
-
-<%--<div class="products">--%>
-<%--    <c:forEach var="product" items="${products}">--%>
-<%--        <div class="product-card">--%>
-<%--            <h4>${product.name}</h4>--%>
-<%--            <p>${product.description}</p>--%>
-<%--            <p class="price">₹ ${product.price}</p>--%>
-<%--        </div>--%>
-<%--    </c:forEach>--%>
-<%--</div>--%>
-
-<%--<c:if test="${empty products}">--%>
-<%--    <p style="text-align:center;">No products available</p>--%>
-<%--</c:if>--%>
-
-<%--</body>--%>
-<%--</html>--%>
-
-
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="isAdmin"
+       value="${pageContext.request.isUserInRole('ROLE_ADMIN')}" />
+
+<c:set var="isCustomer"
+       value="${pageContext.request.isUserInRole('ROLE_CUSTOMER')}" />
 
 <html>
 <head>
     <title>Home</title>
+
     <style>
-        body { font-family: Arial; background: #f5f5f5; padding: 20px; }
-        .container { max-width: 1000px; margin: auto; }
-        h1 { margin-bottom: 10px; }
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
 
         .products, .admin-panel {
             background: #fff;
@@ -110,17 +42,21 @@
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
+            text-align: center;
         }
 
-        th { background: #eee; }
+        th {
+            background: #eee;
+        }
 
         .btn {
-            padding: 8px 12px;
+            padding: 6px 10px;
             background: #007bff;
             color: white;
             text-decoration: none;
             border-radius: 4px;
-            margin-right: 5px;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-danger { background: #dc3545; }
@@ -129,6 +65,10 @@
 </head>
 
 <body>
+
+<!-- COMMON HEADER -->
+<jsp:include page="common/header.jsp" />
+
 <div class="container">
 
     <h1>Welcome to E-Commerce</h1>
@@ -144,8 +84,11 @@
                 <th>Price</th>
                 <th>In Stock</th>
 
-                <!-- ADMIN EXTRA COLUMN -->
-                <c:if test="${roles.toString().contains('ROLE_ADMIN')}">
+                <c:if test="${isCustomer}">
+                    <th>Add To Cart</th>
+                </c:if>
+
+                <c:if test="${isAdmin}">
                     <th>Actions</th>
                 </c:if>
             </tr>
@@ -157,24 +100,47 @@
                     <td>${p.price}</td>
                     <td>${p.instock}</td>
 
-                    <!-- ADMIN ACTIONS -->
-                    <c:if test="${roles.toString().contains('ROLE_ADMIN')}">
+                    <!-- CUSTOMER : ADD TO CART -->
+                    <c:if test="${isCustomer}">
                         <td>
-                            <form action="/admin/deleteProduct/${p.id}" method="post" style="display:inline;">
+                            <form action="${pageContext.request.contextPath}/customer/addToCart" method="post">
+                                <input type="hidden" name="productId" value="${p.id}" />
+                                <input type="number"
+                                       name="quantity"
+                                       min="1"
+                                       max="${p.instock}"
+                                       value="1"
+                                       required />
+                                <br/><br/>
+                                <button class="btn">Add To Cart</button>
+                            </form>
+                        </td>
+                    </c:if>
+
+                    <!-- ADMIN : ACTIONS -->
+                    <c:if test="${isAdmin}">
+                        <td>
+                            <form action="/admin/deleteProduct/${p.id}"
+                                  method="post"
+                                  style="display:inline;">
                                 <button class="btn btn-danger">Delete</button>
                             </form>
-<%--                            <form action="/admin/updateProduct/${p.id}" method="post" style="display:inline;">--%>
-                            <a href="admin/updateProductPage/${p.id}" class="btn btn-primary">Update</a>
-<%--                            </form>--%>
+
+                            <a href="/admin/updateProductPage/${p.id}"
+                               class="btn">Update</a>
                         </td>
                     </c:if>
                 </tr>
             </c:forEach>
         </table>
+
+        <c:if test="${empty products}">
+            <p style="text-align:center;">No products available</p>
+        </c:if>
     </div>
 
     <!-- ADMIN PANEL -->
-    <c:if test="${roles.toString().contains('ROLE_ADMIN')}">
+    <c:if test="${isAdmin}">
         <div class="admin-panel">
             <h2>Admin Panel</h2>
 
@@ -187,4 +153,3 @@
 </div>
 </body>
 </html>
-
