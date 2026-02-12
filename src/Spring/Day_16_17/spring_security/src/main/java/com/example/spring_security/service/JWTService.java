@@ -23,6 +23,7 @@ public class JWTService {
 
     private String secretKey = "cF781";
 
+
     public JWTService(){
         try {
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
