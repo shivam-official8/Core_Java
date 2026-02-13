@@ -13,11 +13,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MyUserDetailsService implements UserDetailsService {
-
+public class MyUserDetailsService
+        implements UserDetailsService {
     @Autowired
-    private UserRepo userRepository;
+    private  PasswordEncoder passwordEncoder;
 
+    private final UserRepo userRepository;
+    public MyUserDetailsService(UserRepo userRepository) {
+        this.userRepository = userRepository;
+    }
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
@@ -26,15 +30,11 @@ public class MyUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
+        return User.builder()
+                .username(user.getUsername())
                 .password(user.getPassword())
                 .roles(user.getRole())
                 .build();
-    }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }
