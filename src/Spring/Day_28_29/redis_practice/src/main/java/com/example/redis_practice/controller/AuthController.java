@@ -69,4 +69,32 @@ public class AuthController {
         System.out.println(min);
         return min+"";
     }
+
+    @PostMapping("/getSubarray")
+    public int subarray(@RequestBody int[] arr){
+        int k=10;
+        int r=0,l=0, sum=0, min=Integer.MAX_VALUE;
+        while(r<arr.length){
+            sum+=arr[r];
+            while(sum>k){
+                min=Math.min(min, r-l+1);
+                sum-=arr[l];
+                l++;
+            }
+            r++;
+        }
+        return min;
+    }
+
+    @PostMapping("/binarysearch/{k}")
+    public int binarySearch(@RequestBody int[] arr, @PathVariable int k){
+        int s=0, e=arr.length-1;
+        while(s<=e){
+            int mid = s+(e-s)/2;
+            if(arr[mid]==k)return mid;
+            if(arr[mid]>k)e=mid-1;
+            else s=mid+1;
+        }
+        return -1;
+    }
 }
