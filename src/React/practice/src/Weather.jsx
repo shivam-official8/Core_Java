@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const API_KEY = "a0842c058971708f222519232eebf556";
@@ -7,7 +7,7 @@ function Weather() {
   const { city } = useParams();
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
-const navigate = useNavigate();
+// const navigate = useNavigate();
   
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const navigate = useNavigate();
       .catch((err) => setError(err.message));
   }, [city]);
 
-  if (error) return <h3>{error}</h3>;
+  if (error) return <h3> {error}</h3>;
   if (!weather) return <h3>Loading...</h3>;
 
   return (
@@ -33,7 +33,7 @@ const navigate = useNavigate();
       <p>🌡️ Temperature: {weather.main.temp} °C</p>
       <p>☁️ Condition: {weather.weather[0].description}</p>
       <p>💨 Wind: {weather.wind.speed} m/s</p>
-      <button onClick={()=>navigate("/")}>Home</button>
+      
     </div>
     
   );
