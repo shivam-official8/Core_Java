@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>practice_1</artifactId>
+    <artifactId>session_auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>practice_1</name>
-    <description>practice_1</description>
+    <name>session_auth</name>
+    <description>session_auth</description>
     <url/>
     <licenses>
         <license/>
@@ -75,7 +75,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
@@ -90,7 +89,6 @@
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
         </dependency>
-
 
     </dependencies>
 
