@@ -22,6 +22,8 @@ public class Users {
     private String email;
     private Role role;
 
+    private String name;
+
     @OneToMany(mappedBy = "user")
     private List<Orders> orders;
 }

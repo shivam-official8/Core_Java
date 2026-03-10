@@ -66,7 +66,7 @@ public class AuthService {
 
 
 
-    public String login( LoginRequest req){
+    public ResponseEntity<String> login(LoginRequest req){
 
         Authentication authentication =
                 authenticationManager.authenticate(
@@ -75,9 +75,13 @@ public class AuthService {
                                 req.getPassword()
                         )
                 );
+        String role = authentication.getAuthorities()
+                .iterator()
+                .next()
+                .getAuthority();
 
         if(authentication.isAuthenticated()){
-            return jwtUtil.generateToken(req.getEmail());
+            return new ResponseEntity<>(jwtUtil.generateToken(req.getEmail(), role), HttpStatus.OK);
         }
 
         throw new RuntimeException("Invalid credentials");

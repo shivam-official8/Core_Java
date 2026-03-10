@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [usernameAvailable, setUsernameAvailable] = useState(null);
+  const [emailAvailable, setEmailAvailable] = useState(null);
   const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   // Check username availability with debounce
   useEffect(() => {
@@ -25,12 +29,14 @@ const RegisterPage = () => {
     return () => clearTimeout(timeoutId);
   }, [username]);
 
+
   const handleRegister = async (e) => {
     e.preventDefault();
     if (usernameAvailable === false) {
       setMessage("Username is already taken!");
       return;
     }
+   
 
     try {
       const res = await axios.post("http://localhost:8080/auth/register", { username, email, password });
@@ -39,6 +45,11 @@ const RegisterPage = () => {
       setEmail("");
       setPassword("");
       setUsernameAvailable(null);
+      console.log(res);
+      console.log("helooooo: "+res.data);
+      
+      if(res.status==201)navigate("/login");
+      
     } catch (err) {
       setMessage(err.response?.data || "Error registering user");
     }
@@ -79,6 +90,7 @@ const RegisterPage = () => {
         />
         <button type="submit" style={styles.button}>Register</button>
       </form>
+       <p>Already have an account? <Link to="/login">Login</Link> </p>
       {message && <p style={{ color: "#2563eb", marginTop: "10px" }}>{message}</p>}
     </div>
   );

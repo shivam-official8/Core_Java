@@ -38,6 +38,8 @@ public class AdminService {
     @Autowired
     private CategoryRepo categoryRepo;
 
+
+
     public ResponseEntity<String> createAdmin(RegisterRequest request){
         Authentication authentication =
                 SecurityContextHolder.getContext().getAuthentication();
@@ -92,5 +94,13 @@ public class AdminService {
         category.setName(request.getName());
         categoryRepo.save(category);
         return new ResponseEntity<>("Category added.", HttpStatus.CREATED);
+    }
+
+    public ResponseEntity<Product> getProductById(Long id){
+      return new ResponseEntity<>(productRepo.getReferenceById(id), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Category>> getAllCategories(){
+        return new ResponseEntity<>(categoryRepo.findAll(), HttpStatus.OK);
     }
 }

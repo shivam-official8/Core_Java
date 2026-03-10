@@ -3,6 +3,7 @@ package com.example.practice_project.controller;
 import com.example.practice_project.dto.CategoryAddRequest;
 import com.example.practice_project.dto.ProductSaveRequest;
 import com.example.practice_project.dto.RegisterRequest;
+import com.example.practice_project.entity.Category;
 import com.example.practice_project.entity.Product;
 import com.example.practice_project.entity.Users;
 import com.example.practice_project.enums.Role;
@@ -60,4 +61,16 @@ public class AdminController {
     public ResponseEntity<String> addCategory(@RequestBody CategoryAddRequest request){
         return service.addCategory(request);
     }
+
+  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping("/product/{id}")
+  public ResponseEntity<Product> getProductById(@PathVariable Long id){
+    return service.getProductById(id);
+  }
+
+  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping("/all-categories")
+  public ResponseEntity<List<Category>> allCategories(){
+      return service.getAllCategories();
+  }
 }

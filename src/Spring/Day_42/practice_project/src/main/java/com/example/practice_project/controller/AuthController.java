@@ -37,7 +37,7 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest req){
+    public ResponseEntity<String> login(@RequestBody LoginRequest req){
 
       return service.login(req);
     }
@@ -47,6 +47,8 @@ public class AuthController {
         boolean exists = repo.existsByUsername(username);
         return Map.of("available", !exists);
     }
+
+
 
 
 
